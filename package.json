@@ -1,0 +1,23 @@
+{
+  "name": "@gostgroup/gostxios",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/tsc --watch",
+    "build": "rm -r lib && ./node_modules/.bin/tsc",
+    "test": "jest"
+  },
+  "author": "Pavel Makeenko <amorphousxd@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cross-fetch": "^2.2.2",
+    "url-join": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/url-join": "^0.8.2",
+    "jest": "^23.3.0",
+    "tslint-config-airbnb": "^5.9.2",
+    "typescript": "^2.9.2"
+  }
+}

@@ -1,0 +1,11 @@
+lerna-debug.log
+node_modules
+dist
+lib
+__lib
+.DS_Store
+yarn.lock
+package-lock.json
+.env
+.idea
+.vscode
