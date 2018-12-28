@@ -30,6 +30,7 @@ export interface ServiceType {
   get?: ParamsResponseAny;
   post?: ParamsResponseBodyAny;
   put?: ParamsResponseBodyAny;
+  patch?: ParamsResponseBodyAny;
   delete?: ParamsResponseBodyAny;
 }
 
@@ -75,7 +76,7 @@ export default class ApiService<T extends ServiceType> {
 
     const { onSuccess } = this.options;
 
-    if (['POST', 'PUT', 'DELETE'].indexOf(method) > -1) {
+    if (['POST', 'PUT', 'PATCH', 'DELETE'].indexOf(method) > -1) {
       options.body = bodyFromObject[requestDataType](body);
     }
     url = `${url}?${objectToParams(params)}`;
@@ -128,7 +129,11 @@ export default class ApiService<T extends ServiceType> {
 
   // @ts-ignore https://github.com/Microsoft/TypeScript/issues/21760
   put = (body: HashMap<any> = {}, params: HashMap<any> = {}): Promise<T['put']['response']> =>
-    this.httpMethod(params, body, 'PUT').then(r => safeCall(this.options.transformResponse, r))
+  this.httpMethod(params, body, 'PUT').then(r => safeCall(this.options.transformResponse, r))
+  
+  // @ts-ignore https://github.com/Microsoft/TypeScript/issues/21760
+  patch = (body: HashMap<any> = {}, params: HashMap<any> = {}): Promise<T['patch']['response']> =>
+    this.httpMethod(params, body, 'PATCH').then(r => safeCall(this.options.transformResponse, r))
 
   // @ts-ignore https://github.com/Microsoft/TypeScript/issues/21760
   delete = (body: HashMap<any> = {}, params: HashMap<any> = {}): Promise<T['delete']['response']> =>
