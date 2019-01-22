@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import * as urljoin from 'url-join';
+import urljoin from 'url-join';
 import objectToParams from './utils/objectToParams';
 import { Nullable, HashMap, DataTypes, ApiServiceOptions, FetchOptions } from './types';
 import bodyFromObject from './utils/bodyFromObject';
@@ -130,7 +130,7 @@ export default class ApiService<T extends ServiceType> {
   // @ts-ignore https://github.com/Microsoft/TypeScript/issues/21760
   put = (body: HashMap<any> = {}, params: HashMap<any> = {}): Promise<T['put']['response']> =>
   this.httpMethod(params, body, 'PUT').then(r => safeCall(this.options.transformResponse, r))
-  
+
   // @ts-ignore https://github.com/Microsoft/TypeScript/issues/21760
   patch = (body: HashMap<any> = {}, params: HashMap<any> = {}): Promise<T['patch']['response']> =>
     this.httpMethod(params, body, 'PATCH').then(r => safeCall(this.options.transformResponse, r))

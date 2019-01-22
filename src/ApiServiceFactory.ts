@@ -1,4 +1,4 @@
-import * as urljoin from 'url-join';
+import urljoin from 'url-join';
 import ApiService from './ApiService.js';
 import { ApiServiceOptions, FetchOptions } from './types';
 
