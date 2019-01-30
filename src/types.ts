@@ -10,12 +10,23 @@ export type DataTypes = {
 
 export type FetchOptions = RequestInit;
 
+export type ManuallyRejectedResponse = Readonly<{
+  status: number;
+  originalResponse: Response;
+}>;
+
+export type RejectedResponse =
+ | ManuallyRejectedResponse
+ | Error
+ | undefined
+;
+
 export type ApiServiceOptions = {
   dataTypes?: DataTypes;
   responseHeaders?: string[];
   onInit?(): any;
   onSuccess?(url: string, r: Response, responseBody: any): any;
-  onError?(e: Error): any;
+  onError?(e: ManuallyRejectedResponse): any;
   transformResponse?(responseBody: Body): any;
   logFunction?(method: string): any;
 };

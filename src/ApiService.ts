@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
-import urljoin from 'url-join';
+import * as urljoin from 'url-join';
 import objectToParams from './utils/objectToParams';
-import { Nullable, HashMap, DataTypes, ApiServiceOptions, FetchOptions } from './types';
+import { Nullable, HashMap, DataTypes, ApiServiceOptions, FetchOptions, RejectedResponse } from './types';
 import bodyFromObject from './utils/bodyFromObject';
 
 const clientErrorCodeRegEx = /^[4][0-9][0-9]$/;
@@ -84,7 +84,10 @@ export default class ApiService<T extends ServiceType> {
     this.log(method, url);
     return fetch(url, options).then((r) => {
       if (isClientError(r.status)) {
-        return Promise.reject(new Error(String(r.status)));
+        return Promise.reject({
+          originalResponse: r,
+          status: r.status,
+        } as RejectedResponse);
       }
 
       return r[responseDataType]()

@@ -1,7 +1,12 @@
 {
   "name": "@gostgroup/gostxios",
-  "version": "0.1.1",
-  "description": "",
+  "version": "0.2.2",
+  "description": "Useful fetching utility",
+  "private": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/tsc --watch",
